@@ -1,0 +1,8 @@
+{{#if model.pModel.bezirkeState.bezirk}}
+    <div class="info-window info-window-details">
+      <h3>
+      	{{model.pModel.bezirkeState.bezirk.name}} - {{activeYear}}
+      </h3>
+    </div>
+{{/if}}
+{{yield}}

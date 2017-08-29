@@ -1,14 +1,14 @@
+<div class="dashboard">
 {{#leaflet-map lat=lat lng=lng zoom=zoom id="map"}}
   {{!-- Specify child layer components here --}}
   {{tile-layer url="http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"}}
-  {{#each bezirke as |bezirk|}}
-    {{#geojson-layer geoJSON=bezirk.geojson onClick=(action "onClick" bezirk) color="#3388ff"}}
+  {{#each model.pModel.bezirke as |bezirk|}}
+    {{#geojson-layer geoJSON=bezirk.geojson color="#3388ff" onClick=(route-action 'setBezirk' bezirk) }}
     {{#popup-layer}}
         <h3>{{bezirk.name}}</h3>
       {{/popup-layer}}
     {{/geojson-layer}}
   {{/each}}
-  
-    
   {{/leaflet-map}}
+</div>
 {{yield}}

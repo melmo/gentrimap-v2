@@ -1,0 +1,12 @@
+<div class="info-window">
+
+	{{#each recordAttr as |attr|}}
+  		{{#radio-button value=attr groupValue="e_e" changed="(route-action 'setDataAttr' attr)"}}
+		    {{attr}}
+		{{/radio-button}}
+  		<br>
+  	{{/each}}
+
+</div>
+
+{{yield}}

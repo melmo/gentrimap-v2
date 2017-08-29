@@ -1,0 +1,28 @@
+{{#bezirk-map model=model}}
+{{/bezirk-map}}
+{{#bezirk-control id="info-window-control" model=model}}
+{{/bezirk-control}}
+
+{{#bezirk-details id="info-window-details" model=model activeYear=activeYear}}
+{{/bezirk-details}}
+<div id="info-window-slider">
+<div class="info-window">
+<h3>{{activeYear}}</h3>
+{{ui-slider 
+     defaultValue=maxYear 
+     value=activeYear
+     min=minYear 
+     max=maxYear 
+     step=1 
+     orientation='horizontal' 
+     tooltip='show' 
+     changed=(route-action 'setYear')  
+     disabled=false 
+     reversed=false 
+     focus=false 
+     naturalArrowKeys=false 
+     immediateResponse=false }}
+</div>
+</div>
+
+{{yield}}

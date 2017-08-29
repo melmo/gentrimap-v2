@@ -4,9 +4,8 @@ var router = express.Router();
 var db = require('../queries');
 
 router.get('/api/bezirke', db.getAllBezirke);
-router.get('/api/bezirke/:id', db.getSingleBezirk);
-router.get('/api/planungsraeume', db.getAllPlanungsraeume);
-
+router.get('/api/bezirk/demographie', db.getAllBezirkeDemographie);
+//router.get('/api/bezirke/:id', db.getSingleBezirk);
 /* GET home page. */
 /*
 router.get('/', function(req, res, next) {

@@ -9,3 +9,34 @@ body {
 		margin-bottom: 0px;
 	}
 }
+
+.dashboard {
+	position: relative;
+}
+
+.info-window {
+	background:white;
+	padding:1rem;
+}
+
+#info-window-details {
+	top:50px;
+	right:50px;
+	position:absolute;
+	z-index:999;
+}
+
+#info-window-control {
+	top:150px;
+	left:50px;
+	position:absolute;
+	z-index:999;
+}
+
+#info-window-slider {
+	bottom:50px;
+	left:150px;
+	right:150px;
+	position:absolute;
+	z-index:999;
+}

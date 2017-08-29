@@ -21,8 +21,7 @@ var db = pgp({
 
 module.exports = {
   getAllBezirke: getAllBezirke,
-  getSingleBezirk: getSingleBezirk,
-  getAllPlanungsraeume: getAllPlanungsraeume,
+  getAllBezirkeDemographie: getAllBezirkeDemographie
 };
 
 function getAllBezirke(req, res, next) {
@@ -64,33 +63,31 @@ function getAllBezirke(req, res, next) {
     });
 }
 
-function getSingleBezirk(req, res, next) {
-  var bezirkID = parseInt(req.params.id);
-  db.one('select id, name,  ST_AsGeoJSON(geom)::json AS geom from bezirke where id = $1', bezirkID)
-    .then(function (data) {
-      res.status(200)
+function getAllBezirkeDemographie(req, res, next)  {
+  db.task('get-bezirke-demographie', t => {
+        return t.batch([
+            t.any('select * from bezirk_demographie'),
+           // t.any('select * from demographie_key')
+        ]);
+    })
+    .then(data => {
+        // data[0] = result from the first query;
+        // data[1] = result from the second query;
+        var bezirke_demographie = [];
+        for (let datum of data[0]) {
+          var bezirk_demo = {
+            id : datum.year + datum.bezirk_id,
+            type : 'bezirk/demographie',
+            attributes : datum
+          };
+          bezirke_demographie.push(bezirk_demo);
+        }
+        res.status(200)
         .json({
-          status: 'success',
-          data: data,
-          message: 'Retrieved ONE Bezirk'
+          data: bezirke_demographie
         });
     })
-    .catch(function (err) {
-      return next(err);
-    });
-}
-
-function getAllPlanungsraeume(req, res, next) {
-  db.any('select id, name,  ST_AsGeoJSON(geom)::json AS geom from planungsraeume')
-    .then(function (data) {
-      res.status(200)
-        .json({
-          status: 'success',
-          data: data,
-          message: 'Retrieved ALL Planungsraeume'
-        });
-    })
-    .catch(function (err) {
-      return next(err);
+    .catch(err => {
+        return next(err);
     });
 }
