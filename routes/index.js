@@ -3,9 +3,17 @@ var router = express.Router();
 
 var db = require('../queries');
 
+
+router.get('/api/ebenen', db.getEbenen);
+router.get('/api/ebene/:id', db.getEbene);
+router.get('/api/ebene/:id/demographie', db.getAllEbeneDemographie);
+router.get('/api/ebene/:id/demographie/:dem_id', db.getSingleEbeneDemographie);
+
 router.get('/api/bezirke', db.getAllBezirke);
 router.get('/api/bezirk/demographie', db.getAllBezirkeDemographie);
 router.get('/api/bezirk/demographie/:id', db.getSingleBezirkeDemographie);
+
+
 //router.get('/api/bezirke/:id', db.getSingleBezirk);
 /* GET home page. */
 /*

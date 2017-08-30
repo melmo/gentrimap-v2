@@ -4,7 +4,6 @@ export default Ember.Service.extend({
 	bezirkeState: null,
 
 	init() {
-		console.log('service init');
 	    this._super(...arguments);
 	    this.set('bezirkeState', Ember.Object.create({
 	      	dataSet : null,

@@ -7,16 +7,25 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('about');
+  this.route('about',{path: '/about'});
   this.route('maps');
-  //this.route('bezirk');
 
   this.route('bezirk', function() {
   	this.route('demographie', { path: '/demographie/:id' });
     this.route('demographie');
 
   });
-  this.route('planungsraum');
+  this.route('ebene', { path: '/ebene' });
+
+  this.route('ebene', { path: '/ebene/:ebene_id' }, function() {
+    this.route('data/demographie' , { path: '/demographie' }, function() {
+      this.route('data/demographie', { path: '/demographie:dem_id' });
+    });
+    
+    
+  });
+
+  
 });
 
 export default Router;
