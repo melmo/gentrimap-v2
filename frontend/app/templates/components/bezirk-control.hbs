@@ -1,9 +1,10 @@
 <div class="info-window">
 
 	{{#each recordAttr as |attr|}}
-  		{{#radio-button value=attr groupValue="e_e" changed="(route-action 'setDataAttr' attr)"}}
-		    {{attr}}
-		{{/radio-button}}
+	<input type="radio" id={{attr}} value={{attr}} name="attr" onchange={{route-action 'setDataAttr' attr}}>
+		
+  		<label for="{{attr}}">{{attr}}</label>
+
   		<br>
   	{{/each}}
 

@@ -21,7 +21,8 @@ var db = pgp({
 
 module.exports = {
   getAllBezirke: getAllBezirke,
-  getAllBezirkeDemographie: getAllBezirkeDemographie
+  getAllBezirkeDemographie: getAllBezirkeDemographie,
+  getSingleBezirkeDemographie : getSingleBezirkeDemographie
 };
 
 function getAllBezirke(req, res, next) {
@@ -85,6 +86,32 @@ function getAllBezirkeDemographie(req, res, next)  {
         res.status(200)
         .json({
           data: bezirke_demographie
+        });
+    })
+    .catch(err => {
+        return next(err);
+    });
+}
+
+function getSingleBezirkeDemographie(req, res, next) {
+  var bdID = req.params.id;
+  var bdIDArray = [bdID.substring(0, 4) , bdID.substring(4)];
+  db.task('get-bezirke-demographie', t => {
+        return t.batch([
+            t.one('select * from bezirk_demographie where year = $1 and bezirk_id = $2', bdIDArray)
+        ]);
+    })
+    .then(data => {
+        
+        var bezirk_demo = {
+          id : data[0].year + data[0].bezirk_id,
+          type : 'bezirk/demographie',
+          attributes : data[0]
+        };
+          
+        res.status(200)
+        .json({
+          data: bezirk_demo
         });
     })
     .catch(err => {

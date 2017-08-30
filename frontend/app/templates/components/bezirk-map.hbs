@@ -3,9 +3,10 @@
   {{!-- Specify child layer components here --}}
   {{tile-layer url="http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"}}
   {{#each model.pModel.bezirke as |bezirk|}}
-    {{#geojson-layer geoJSON=bezirk.geojson color="#3388ff" onClick=(route-action 'setBezirk' bezirk) }}
+    {{#geojson-layer geoJSON=bezirk.geojson className=bezirk.name style=bezirk.style  onClick=(route-action 'setBezirk' bezirk) }}
     {{#popup-layer}}
         <h3>{{bezirk.name}}</h3>
+        {{bezirk.value}}
       {{/popup-layer}}
     {{/geojson-layer}}
   {{/each}}

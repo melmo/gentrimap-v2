@@ -8,6 +8,8 @@ var ApplicationAdapter = DS.JSONAPIAdapter.extend({
 
 var inflector = Ember.Inflector.inflector;
 inflector.irregular('bezirk', 'bezirke');
+inflector.irregular('planungsraum', 'planungsraeume');
 inflector.uncountable('demographie');
+inflector.uncountable('bezirk/demographie');
 
 export default ApplicationAdapter;

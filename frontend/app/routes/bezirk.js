@@ -18,8 +18,6 @@ export default Ember.Route.extend({
 	        this.refresh();
 	    },
 	    setDataAttr(dataAttr) {
-	    	console.log('on route');
-	    	console.log(dataAttr);
 	    	this.get('service').setDataAttr(dataAttr);
 	        this.refresh();
 	    },

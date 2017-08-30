@@ -36,7 +36,6 @@
     "ember-inflector": "^2.0.1",
     "ember-leaflet": "^3.0.12",
     "ember-load-initializers": "^1.0.0",
-    "ember-radio-button": "^1.1.1",
     "ember-resolver": "^4.0.0",
     "ember-route-action-helper": "^2.0.6",
     "ember-source": "~2.14.1",

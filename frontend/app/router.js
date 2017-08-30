@@ -12,8 +12,11 @@ Router.map(function() {
   //this.route('bezirk');
 
   this.route('bezirk', function() {
+  	this.route('demographie', { path: '/demographie/:id' });
     this.route('demographie');
+
   });
+  this.route('planungsraum');
 });
 
 export default Router;
