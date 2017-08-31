@@ -1,6 +1,6 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('route:data/demographie', 'Unit | Route | data/demographie', {
+moduleFor('route:ebene/data/demographie', 'Unit | Route | ebene/data/demographie', {
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
 });

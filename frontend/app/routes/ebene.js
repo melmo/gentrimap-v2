@@ -10,7 +10,7 @@ export default Ember.Route.extend({
 	},
 	model(params) {
 		return Ember.RSVP.hash({
-	      ebene: this.store.query('ebene',{id : params.ebene_id}),
+	      ebene: this.store.query('ebene',{path : 'ebene/' + params.ebene_id}),
 	      ebeneState : this.get('service').get('ebeneState')
 	    });
 	},

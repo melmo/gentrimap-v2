@@ -7,12 +7,32 @@ var ApplicationAdapter = DS.JSONAPIAdapter.extend({
 	query(store, type, query) {
 
     return new Ember.RSVP.Promise(function(resolve, reject) {
+      Ember.$.getJSON(`http://localhost:3000/api/${query.path}`).then(function(data) {
+        resolve(data);
+      }, function(jqXHR) {
+        reject(jqXHR);
+      });
+    });
+
+   /* return new Ember.RSVP.Promise(function(resolve, reject) {
       Ember.$.getJSON(`http://localhost:3000/api/${type.modelName}/${query.id}`).then(function(data) {
         resolve(data);
       }, function(jqXHR) {
         reject(jqXHR);
       });
     });
+*/
+  },
+ queryRecord(store, type, query) {
+
+    return new Ember.RSVP.Promise(function(resolve, reject) {
+      Ember.$.getJSON(`http://localhost:3000/api/${query.path}`).then(function(data) {
+        resolve(data);
+      }, function(jqXHR) {
+        reject(jqXHR);
+      });
+    });
+
   }
 });
 

@@ -9,6 +9,8 @@ router.get('/api/ebene/:id', db.getEbene);
 router.get('/api/ebene/:id/demographie', db.getAllEbeneDemographie);
 router.get('/api/ebene/:id/demographie/:dem_id', db.getSingleEbeneDemographie);
 
+router.get('/api/ebene/:id/demographie-key', db.getDemographieKey);
+
 router.get('/api/bezirke', db.getAllBezirke);
 router.get('/api/bezirk/demographie', db.getAllBezirkeDemographie);
 router.get('/api/bezirk/demographie/:id', db.getSingleBezirkeDemographie);

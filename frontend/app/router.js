@@ -18,10 +18,8 @@ Router.map(function() {
   this.route('ebene', { path: '/ebene' });
 
   this.route('ebene', { path: '/ebene/:ebene_id' }, function() {
-    this.route('data/demographie' , { path: '/demographie' }, function() {
-      this.route('data/demographie', { path: '/demographie:dem_id' });
-    });
-    
+    this.route('data/demographie', { path: '/demographie/:demographie_id' });
+    this.route('data/demographie', { path: '/demographie/' });
     
   });
 
