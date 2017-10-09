@@ -20,7 +20,7 @@ var allowCrossDomain = function(req, res, next) {
 
 var requireHTTPS = function(req, res, next) {
     if (!req.get('host').includes('localhost')) {
-      if (!req.secure) {
+      if (req.headers['x-forwarded-proto']!='https') {
           //FYI this should work for local development as well
           return res.redirect('https://' + req.get('host') + req.url);
       }
