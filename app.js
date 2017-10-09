@@ -1,3 +1,4 @@
+var ssl = require('express-ssl');
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -17,8 +18,20 @@ var allowCrossDomain = function(req, res, next) {
     next();
 }
 
+var requireHTTPS = function(req, res, next) {
+    if (req.app.get('env') === 'production') {
+      if (!req.secure) {
+          //FYI this should work for local development as well
+          return res.redirect('https://' + req.get('host') + req.url);
+      }
+    }
+    next();
+}
+
 
 var app = express();
+
+app.use(requireHTTPS);
 
 app.use(allowCrossDomain);
 
