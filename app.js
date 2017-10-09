@@ -19,7 +19,7 @@ var allowCrossDomain = function(req, res, next) {
 }
 
 var requireHTTPS = function(req, res, next) {
-    if (req.app.get('env') === 'production') {
+    if (!req.get('host').includes('localhost')) {
       if (!req.secure) {
           //FYI this should work for local development as well
           return res.redirect('https://' + req.get('host') + req.url);
