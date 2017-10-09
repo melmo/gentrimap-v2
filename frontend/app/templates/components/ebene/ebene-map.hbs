@@ -2,18 +2,18 @@
 {{#leaflet-map lat=lat lng=lng zoom=zoom id="map" model="model"}}
   {{!-- Specify child layer components here --}}
   {{tile-layer url="http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"}}
-  {{#if showMap}}
+ 
   {{#each model.ebene.ebene as |raum|}}
   
-    {{#geojson-layer geoJSON=raum.geojson className=raum.name style=raum.style  onClick=(route-action 'setRaum' raum) }}
+    {{#geojson-layer geoJSON=raum.geojson className=raum.name style=raum.style updateMe=updateMe  onClick=(route-action 'setRaum' raum) }}
     {{#popup-layer}}
         <h3>{{raum.name}}</h3>
-        {{raum.value}} . {{raum.style.color}}
+        {{raum.value}}
       {{/popup-layer}}
     {{/geojson-layer}}
     
   {{/each}}
-  {{/if}}
+
   {{/leaflet-map}}
 </div>
 {{yield}}

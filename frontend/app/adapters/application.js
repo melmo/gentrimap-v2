@@ -1,13 +1,14 @@
 import DS from 'ember-data';
 import Ember from 'ember';
+import ENV from 'frontend/config/environment';
 
 var ApplicationAdapter = DS.JSONAPIAdapter.extend({
 	namespace: 'api',
-	host:'http://localhost:3000',
+	host:ENV.APIHOST,
 	query(store, type, query) {
 
     return new Ember.RSVP.Promise(function(resolve, reject) {
-      Ember.$.getJSON(`http://localhost:3000/api/${query.path}`).then(function(data) {
+      Ember.$.getJSON(`${ENV.APIHOST}/api/${query.path}`).then(function(data) {
         resolve(data);
       }, function(jqXHR) {
         reject(jqXHR);
@@ -26,7 +27,7 @@ var ApplicationAdapter = DS.JSONAPIAdapter.extend({
  queryRecord(store, type, query) {
 
     return new Ember.RSVP.Promise(function(resolve, reject) {
-      Ember.$.getJSON(`http://localhost:3000/api/${query.path}`).then(function(data) {
+      Ember.$.getJSON(`${ENV.APIHOST}/api/${query.path}`).then(function(data) {
         resolve(data);
       }, function(jqXHR) {
         reject(jqXHR);

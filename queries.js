@@ -6,16 +6,16 @@ var options = {
 };
 
 var pgp = require('pg-promise')(options);
-var connectionString = 'postgres://localhost:5432/gentrimap_01';
+var connectionString = process.env.DATABASE_URL ||  'postgres://gentrimap_01:h46aYNjlvqd67G5y@localhost:5432/gentrimap_02';
 var db = pgp(connectionString);
 
-var db = pgp({
+/*var db = pgp({
     host: 'localhost',
     port: 5432,
     database: 'gentrimap_02',
     user: 'gentrimap_01',
     password: 'h46aYNjlvqd67G5y'
-});
+});*/
 
 // add query functions
 
@@ -187,7 +187,8 @@ function getAllEbeneDemographie(req, res, next)  {
         var ebene_demographie = [];
         for (let datum of data[0]) {
           var ebene_demo = {
-            id : req.params.id + '_' + datum.year + datum.raum_id, 
+            //id : req.params.id + '_' + datum.year + datum.raum_id, 
+            id : datum.year + datum.raum_id, 
             type : 'data/demographie',
             attributes : datum
           };
