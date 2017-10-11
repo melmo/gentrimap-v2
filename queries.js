@@ -9,13 +9,6 @@ var pgp = require('pg-promise')(options);
 var connectionString = process.env.DATABASE_URL ||  'postgres://gentrimap_01:h46aYNjlvqd67G5y@localhost:5432/gentrimap_02';
 var db = pgp(connectionString);
 
-/*var db = pgp({
-    host: 'localhost',
-    port: 5432,
-    database: 'gentrimap_02',
-    user: 'gentrimap_01',
-    password: 'h46aYNjlvqd67G5y'
-});*/
 
 // add query functions
 
